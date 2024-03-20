@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include "arraylist.h"
 #include "stack.h"
+#include <stdbool.h>
 
 //#include "exercises.h"
 
@@ -32,6 +33,8 @@ void imprime_y_vacia_pila(Stack *P) {
    }
    printf("]\n");
 }
+
+
 
 /* 
 Ejercicio 1.
@@ -128,8 +131,28 @@ La función verifica si la cadena de entrada tiene sus
 paraéntesis balanceados. Retorna 1 si están balanceados,
 0 en caso contrario.
 */
-
 int parentesisBalanceados(char *cadena) {
-   return 0;
+    Stack *stack = create_stack();
+    int i = 0;
+    while (cadena[i] != '\0') {
+        if (cadena[i] == '(') {
+            push(stack, &cadena[i]);
+        } else if (cadena[i] == ')') {
+            if (top(stack) == NULL || *((char*)top(stack)) != '(') {
+                return 0; // Paréntesis desbalanceados
+            } else {
+                pop(stack); // Eliminar paréntesis de apertura emparejado
+            }
+        }
+        i++;
+    }
+    // Verificar si la pila está vacía al final
+    if (top(stack) == NULL) {
+        return 1; // Paréntesis balanceados
+    } else {
+        return 0; // Paréntesis desbalanceados
+    }
 }
+
+
 
