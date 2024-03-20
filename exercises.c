@@ -101,6 +101,25 @@ Puedes usar una pila auxiliar.
 */
 
 void copia_pila(Stack* P1, Stack* P2) {
+  Stack* tempStack = create_stack();  // Creamos una pila temporal
+
+  // Copiamos los elementos de P1 a tempStack manteniendo el orden
+  void *elemento = pop(P1);
+  while (elemento != NULL) {
+      push(tempStack, elemento);
+      elemento = pop(P1);
+  }
+
+  // Copiamos los elementos de tempStack de regreso a P1 y P2 manteniendo el orden
+  elemento = pop(tempStack);
+  while (elemento != NULL) {
+      push(P1, elemento);
+      push(P2, elemento);
+      elemento = pop(tempStack);
+  }
+
+  // Liberamos la memoria asignada para la pila temporal
+  free(tempStack);
 }
 
 /*
