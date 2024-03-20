@@ -133,7 +133,7 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 */
 bool compararStr(char caracter, char caracter2)
 {
-  if(caracter == '(' && caracter2 == ')')
+  if( (caracter == '(' && caracter2 == ')') || (caracter == '[' && caracter2 == ']') || (caracter == '{' && caracter2 == '}')	)
      return true;
 
   return false;
