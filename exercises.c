@@ -135,10 +135,13 @@ int parentesisBalanceados(char *cadena) {
     Stack *stack = create_stack();
     int i = 0;
     while (cadena[i] != '\0') {
-        if (cadena[i] == '(') {
+        if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
             push(stack, &cadena[i]);
-        } else if (cadena[i] == ')') {
-            if (top(stack) == NULL || *((char*)top(stack)) != '(') {
+        } else if (cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') {
+            if (top(stack) == NULL || 
+                ((cadena[i] == ')' && *((char*)top(stack) != '(')) ||
+                (cadena[i] == ']' && *((char*)top(stack) != '[')) ||
+                (cadena[i] == '}' && *((char*)top(stack) != '{')) ) {
                 return 0; // Paréntesis desbalanceados
             } else {
                 pop(stack); // Eliminar paréntesis de apertura emparejado
@@ -146,6 +149,7 @@ int parentesisBalanceados(char *cadena) {
         }
         i++;
     }
+
     // Verificar si la pila está vacía al final
     if (top(stack) == NULL) {
         return 1; // Paréntesis balanceados

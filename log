@@ -43,3 +43,39 @@ Wed 20 Mar 2024 08:54:09 PM UTC:
  tests:  7|1
 total_score: 60/70
 233c407
+Wed 20 Mar 2024 08:56:19 PM UTC: 
+ exercises.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+In file included from test.c:5:
+exercises.c: In function ‘parentesisBalanceados’:
+exercises.c:142:59: error: comparison between pointer and integer [-Werror]
+  142 |                 ((cadena[i] == ')' && *((char*)top(stack) != '(')) ||
+      |                                                           ^~
+exercises.c:142:39: error: invalid type argument of unary ‘*’ (have ‘int’)
+  142 |                 ((cadena[i] == ')' && *((char*)top(stack) != '(')) ||
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+exercises.c:143:58: error: comparison between pointer and integer [-Werror]
+  143 |                 (cadena[i] == ']' && *((char*)top(stack) != '[')) ||
+      |                                                          ^~
+exercises.c:143:38: error: invalid type argument of unary ‘*’ (have ‘int’)
+  143 |                 (cadena[i] == ']' && *((char*)top(stack) != '[')) ||
+      |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+exercises.c:144:58: error: comparison between pointer and integer [-Werror]
+  144 |                 (cadena[i] == '}' && *((char*)top(stack) != '{')) ) {
+      |                                                          ^~
+exercises.c:144:38: error: invalid type argument of unary ‘*’ (have ‘int’)
+  144 |                 (cadena[i] == '}' && *((char*)top(stack) != '{')) ) {
+      |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+exercises.c:144:68: error: expected ‘)’ before ‘{’ token
+  144 |                 (cadena[i] == '}' && *((char*)top(stack) != '{')) ) {
+      |                                                                    ^~
+      |                                                                    )
+exercises.c:141:16: note: to match this ‘(’
+  141 |             if (top(stack) == NULL ||
+      |                ^
+exercises.c:149:9: error: expected expression before ‘}’ token
+  149 |         }
+      |         ^
+cc1: all warnings being treated as errors
+Compilation failed
+8609677
