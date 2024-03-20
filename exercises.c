@@ -131,30 +131,33 @@ La función verifica si la cadena de entrada tiene sus
 paraéntesis balanceados. Retorna 1 si están balanceados,
 0 en caso contrario.
 */
-int parentesisBalanceados(char *cadena) {
-    Stack *stack = create_stack();
-    int i = 0;
-    while (cadena[i] != '\0') {
-        if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
-            push(stack, &cadena[i]);
-        } else if (cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') {
-            if (top(stack) == NULL || 
-                ((cadena[i] == ')' && *((char*)top(stack) != '(')) ||
-                (cadena[i] == ']' && *((char*)top(stack) != '[')) ||
-                (cadena[i] == '}' && *((char*)top(stack) != '{')) ) {
-                return 0; // Paréntesis desbalanceados
-            } else {
-                pop(stack); // Eliminar paréntesis de apertura emparejado
-            }
-        }
-        i++;
-    }
+bool compararStr(char caracter, char caracter2)
+{
+  if(caracter == '(' && caracter2 == ')')
+     return true;
 
-    // Verificar si la pila está vacía al final
-    if (top(stack) == NULL) {
-        return 1; // Paréntesis balanceados
-    } else {
-        return 0; // Paréntesis desbalanceados
+  return false;
+}
+
+
+int parentesisBalanceados(char *cadena) {
+  Stack* stack = create_stack();
+  int i = 0;
+  while (cadena[i] != '\0')
+    {
+      if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{')
+      {
+        push(stack, &cadena[i]);
+      }
+      else if(cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}')
+      {
+        if(top(stack) == NULL || !compararStr(*(char*)top(stack), cadena[i])){
+            return 0;
+        }
+        pop(stack);
+          
+        }
+      }
     }
 }
 
