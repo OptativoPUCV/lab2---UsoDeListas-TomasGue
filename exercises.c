@@ -114,11 +114,11 @@ void copia_pila(Stack* P1, Stack* P2) {
   }
 
   // Copiamos los elementos de tempStack de regreso a P1 y P2 manteniendo el orden
-  elemento = pop(tempStack);
-  while (elemento != NULL) {
-      push(P1, elemento);
-      push(P2, elemento);
-      elemento = pop(tempStack);
+  elemento = pop(tempStack); // Sacamos el primer elemento de tempStack
+  while (elemento != NULL) {  // Mientras haya elementos en tempStack
+      push(P1, elemento); // Agregamos a P1
+      push(P2, elemento); // Agregamos a P2
+      elemento = pop(tempStack); // Obtenemos el siguiente elemento de tempStack
   }
 
   // Liberamos la memoria asignada para la pila temporal
